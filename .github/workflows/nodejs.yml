@@ -21,24 +21,24 @@ jobs:
       fail-fast: false
       matrix:
         node-version: [14, 16, 18, 20]
-        os: [ubuntu-latest]
+        os: [ubuntu-22.04]
 
     steps:
-    - name: Checkout Git Source
-      uses: actions/checkout@v2
+      - name: Checkout Git Source
+        uses: actions/checkout@v2
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Install Dependencies
-      run: npm i
+      - name: Install Dependencies
+        run: npm i
 
-    - name: Continuous Integration
-      run: npm run ci
+      - name: Continuous Integration
+        run: npm run ci
 
-    - name: Code Coverage
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Code Coverage
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
